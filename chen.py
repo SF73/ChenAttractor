@@ -2,7 +2,7 @@ import scipy.integrate as S
 from mpl_toolkits.mplot3d import Axes3D
 from pylab import *
 import numpy as np
-def lorenz(x,t):
+def chen(x,t):
     dx=[0.]*len(x)
     dx[0]=a*(x[1]-x[0])
     dx[1]=(c-a)*x[0]-x[0]*x[2]+c*x[1]
@@ -12,12 +12,12 @@ def lorenz(x,t):
 a=35;b=3;c=28
 
 #a=40;b=3*0+1;c=26 #periodic ?
-xt=np.arange(0,2000,1e-3)
+xt=np.arange(0,200,1e-3)
 #x0=[14.0,8.1,45.0]
 x0=[7,7,40]
 #x0=[np.sqrt(abs(b*(2*c-a))),np.sqrt(abs(b*(2*c-a))),2*c-a]
 #print(xf)
-res=S.odeint(lorenz,x0,xt)
+res=S.odeint(chen,x0,xt)
 tx=res[:,0]
 ty=res[:,1]
 tz=res[:,2]
@@ -46,15 +46,20 @@ xPz = np.asarray(xPz)
 xy = np.asarray(xy)
 f=figure()
 ax=f.gca(projection='3d')
-ax.plot(tx,ty,tz)
+ax.plot(tx,ty,tz,linewidth=1)
+
+# section de poincare
 # ax.plot(xPz[:,0],xPz[:,1],zth*np.ones((len(xPz[:,1]))),'.')
 # ax.plot(xth*np.ones((len(xPx[:,1]))),xPx[:,0],xPx[:,1],'.')
 # ax.plot(xPy[:,0],yth*np.ones((len(xPy[:,1]))),xPy[:,1],'.')
 # ax.plot(xy[:,0],xy[:,1],xy[:,2],'.')
 
+# point fixes
 # ax.scatter(np.sqrt(abs(b*(2*c-a))),np.sqrt(abs(b*(2*c-a))),2*c-a,color='red')
 # ax.scatter(-np.sqrt(abs(b*(2*c-a))),-np.sqrt(abs(b*(2*c-a))),2*c-a,color='red')
 # ax.scatter(0,0,0,color='red')
+
+
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')

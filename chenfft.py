@@ -14,7 +14,6 @@ xt=np.arange(0,50,1e-3)
 
 f=figure()
 ax=f.gca(projection='3d')
-sigma=10;beta=8.0/3;rho=28
 x0=[7,7,40]
 res=S.odeint(lorenz,x0,xt)
 tx=res[:,0]
@@ -29,9 +28,9 @@ ax.set_zlabel('Z')
 # FFT
 f2=figure()
 ax2=f2.add_subplot(111)
-#tx=tx-mean(tx)
-#ty=ty-mean(ty)
-#tz=tz-mean(tz)
+tx=tx-mean(tx)
+ty=ty-mean(ty)
+tz=tz-mean(tz)
 tfx=abs(rfft(tx))
 tfy=abs(rfft(ty))
 tfz=abs(rfft(tz))
